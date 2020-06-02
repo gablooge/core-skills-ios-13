@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var myLabel: UILabel!
     @IBOutlet weak var myTextField: UITextField!
     
@@ -16,10 +16,25 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         myLabel.text = "Changed with Code!"
+        myTextField.becomeFirstResponder()
+        myTextField.delegate = self
     }
     
     @IBAction func buttonWasPressed(_ sender: Any) {
-        myLabel.text = "Hello \(myTextField.text)!"
+        myLabel.text = "Hello \(myTextField.text!)!"
+        myTextField.resignFirstResponder()
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        myTextField.resignFirstResponder()
+        view.endEditing(true)
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        myTextField.resignFirstResponder()
+        return false
+    }
+    
 }
 
