@@ -9,12 +9,17 @@
 import UIKit
 
 class ViewController: UIViewController {
-
+    @IBOutlet weak var myLabel: UILabel!
+    @IBOutlet weak var myTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        myLabel.text = "Changed with Code!"
     }
-
-
+    
+    @IBAction func buttonWasPressed(_ sender: Any) {
+        myLabel.text = "Hello \(myTextField.text)!"
+    }
 }
 
